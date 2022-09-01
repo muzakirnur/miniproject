@@ -15,6 +15,7 @@ class MahasiswaFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'user_id' => $this->faker->unique()->numberBetween(1, 100),
             'nim' => $this->faker->randomNumber(9, true),
             'alamat' => $this->faker->address(),
             'tgl_lahir' => $this->faker->dateTimeThisDecade(),

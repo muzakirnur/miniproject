@@ -15,7 +15,7 @@ class EnrollmentFactory extends Factory
     {
         return [
             'matakuliah_id' => $this->faker->numberBetween(1, 10),
-            'mahasiswa_id' => $this->faker->unique()->numberBetween(1, 100),
+            'mahasiswa_id' => $this->faker->unique(true)->numberBetween(1, 100),
         ];
     }
 }
