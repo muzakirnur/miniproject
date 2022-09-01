@@ -1,4 +1,13 @@
 @extends('layouts.app')
 @section('content')
-    Ini Adalah Dashboard Admin
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Selamat Datang {{ Auth::user()->name }}
+            </div>
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>
 @endsection

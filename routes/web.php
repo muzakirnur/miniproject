@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DosenController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,13 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin');
+
+        Route::get('admin/dosen', [DosenController::class, 'index'])->name('admin.dosen.index');
+        Route::post('admin/dosen/create', [DosenController::class, 'create'])->name('admin.dosen.create');
+
+        Route::get('admin/mahasiswa', [DosenController::class, 'index'])->name('admin.dosen.index');
+
+        Route::get('admin/matakuliah', [DosenController::class, 'index'])->name('admin.dosen.index');
     });
     Route::middleware('mahasiswa')->group(function () {
         Route::get('mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa');
