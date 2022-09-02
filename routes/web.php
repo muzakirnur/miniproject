@@ -59,5 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::get('mahasiswa/enrollment', [EnrollmentController::class, 'index'])->name('mahasiswa.enrollment.index');
         Route::get('mahasiswa/enrollment/{id}', [EnrollmentController::class, 'create'])->name('mahasiswa.enrollment.create');
         Route::get('mahasiswa/enrollment/{enrollment}/destroy', [EnrollmentController::class, 'destroy'])->name('mahasiswa.enrollment.destroy');
+
+        Route::get('mahasiswa/export/enrollment', [EnrollmentController::class, 'export'])->name('mahasiswa.enrollment.export');
     });
 });

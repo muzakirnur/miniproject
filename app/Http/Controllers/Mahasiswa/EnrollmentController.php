@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Enrollment;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use PDF;
 
 class EnrollmentController extends Controller
 {
@@ -30,5 +31,13 @@ class EnrollmentController extends Controller
     {
         $enrollment->delete();
         return redirect()->route('mahasiswa.enrollment.index')->with('success', 'Enroll Matakuliah Berhasil Dibatalkan');
+    }
+
+    public function export()
+    {
+        $mahasiswa = Mahasiswa::where('user_id', auth()->id())->first();
+        $enrollments = Enrollment::all()->where('mahasiswa_id', $mahasiswa->id);
+        $pdf = PDF::loadView('layouts.partials.pdf', compact('enrollments'));
+        return $pdf->stream();
     }
 }

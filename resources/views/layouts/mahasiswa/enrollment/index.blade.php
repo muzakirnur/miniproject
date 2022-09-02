@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header">
                 Matakuliah yang di Enroll
             </div>
@@ -39,6 +39,14 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-light shadow-sm" type="button" onclick="history.back(-1)"><i
+                    class="fas fa-fw fa-arrow-left"></i>
+                Kembali</button>
+            <a href="{{ route('mahasiswa.enrollment.export') }}" class="btn btn-danger shadow-sm"><i
+                    class="fas fa-fw fa-print"></i>
+                Cetak PDF</a>
         </div>
     </div>
 @endsection
