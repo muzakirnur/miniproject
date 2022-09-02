@@ -14,4 +14,9 @@ class Matakuliah extends Model
     {
         return $this->hasMany(Enrollment::class);
     }
+
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class);
+    }
 }

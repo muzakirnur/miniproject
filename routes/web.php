@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DosenController;
+use App\Http\Controllers\Admin\MatakuliahController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\Admin\MahasiswaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,13 @@ Route::middleware('auth')->group(function () {
         Route::put('admin/dosen/update/{dosen}', [DosenController::class, 'update'])->name('admin.dosen.update');
         Route::get('admin/dosen/{dosen}/destroy', [DosenController::class, 'destroy'])->name('admin.dosen.destroy');
 
-        Route::get('admin/mahasiswa', [DosenController::class, 'index'])->name('admin.dosen.index');
+        Route::get('admin/mahasiswa', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
+        Route::post('admin/mahasiswa/create', [MahasiswaController::class, 'create'])->name('admin.mahasiswa.create');
+        Route::get('admin/mahasiswa/show/{mahasiswa}', [MahasiswaController::class, 'show'])->name('admin.mahasiswa.show');
+        Route::put('admin/mahasiswa/update/{mahasiswa}', [MahasiswaController::class, 'update'])->name('admin.mahasiswa.update');
+        Route::get('admin/mahasiswa/{mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('admin.mahasiswa.destroy');
 
-        Route::get('admin/matakuliah', [DosenController::class, 'index'])->name('admin.dosen.index');
+        // Route::get('admin/matakuliah', [MahasiswaController::class, 'index'])->name('admin.matakuliah.index');
     });
     Route::middleware('mahasiswa')->group(function () {
         Route::get('mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa');

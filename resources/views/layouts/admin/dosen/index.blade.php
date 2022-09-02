@@ -7,37 +7,43 @@
         </button>
         @include('layouts.partials.alerts')
         <div class="card">
+            <div class="card-header">
+                Data Dosen
+            </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">NIP</th>
-                            <th scope="col">Jenis Kelamin</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($dosens as $dosen)
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <th scope="row">
-                                    {{ ($dosens->currentPage() - 1) * $dosens->perPage() + $loop->iteration }}</th>
-                                <td>{{ $dosen->name }}</td>
-                                <td>{{ $dosen->nip }}</td>
-                                <td>{{ $dosen->jenis_kelamin }}</td>
-                                <td>{{ $dosen->alamat }}</td>
-                                <td>
-                                    <a href="{{ route('admin.dosen.show', $dosen->id) }}" class="btn btn-sm btn-primary"><i
-                                            class="fas fa-fw fa-eye"></i></a>
-                                    <a href="{{ route('admin.dosen.destroy', $dosen->id) }}"
-                                        class="btn btn-sm btn-danger delete-confirm"><i class="fas fa-fw fa-trash"></i></a>
-                                </td>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">NIP</th>
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col"></th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($dosens as $dosen)
+                                <tr>
+                                    <th scope="row">
+                                        {{ ($dosens->currentPage() - 1) * $dosens->perPage() + $loop->iteration }}</th>
+                                    <td>{{ $dosen->name }}</td>
+                                    <td>{{ $dosen->nip }}</td>
+                                    <td>{{ $dosen->jenis_kelamin }}</td>
+                                    <td>{{ $dosen->alamat }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.dosen.show', $dosen->id) }}"
+                                            class="btn btn-sm btn-primary"><i class="fas fa-fw fa-eye"></i></a>
+                                        <a href="{{ route('admin.dosen.destroy', $dosen->id) }}"
+                                            class="btn btn-sm btn-danger delete-confirm"><i
+                                                class="fas fa-fw fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 {{ $dosens->links() }}
             </div>
         </div>
@@ -56,29 +62,53 @@
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" required>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" required>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">NIP</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="nip" required>
+                                <input type="number" class="form-control @error('nip') is-invalid @enderror" name="nip"
+                                    required>
+                                @error('nip')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Alamat</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="alamat" cols="10" rows="3" required></textarea>
+                                <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" cols="10" rows="3"
+                                    required></textarea>
+                                @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-10">
-                                <select name="jenis_kelamin" class="form-select" required>
+                                <select name="jenis_kelamin"
+                                    class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
                                     <option selected>Pilih Jenis Kelamin</option>
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
+                                @error('jenis_kelamin')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer">

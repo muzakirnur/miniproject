@@ -14,6 +14,11 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="staticName" name="name"
                                 value="{{ $dosen->name }}">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -21,12 +26,22 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="staticNip" name="nip"
                                 value="{{ $dosen->nip }}">
+                            @error('nip')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="staticAlamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-sm-10">
                             <textarea type="text" class="form-control" id="staticAlamat" name="alamat">{{ $dosen->alamat }}</textarea>
+                            @error('alamat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -49,7 +64,8 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between">
-                <button class="btn btn-light shadow-sm" onclick="history.back(-1)"><i class="fas fa-fw fa-arrow-left"></i>
+                <button class="btn btn-light shadow-sm" type="button" onclick="history.back(-1)"><i
+                        class="fas fa-fw fa-arrow-left"></i>
                     Kembali</button>
                 <button class="btn btn-primary shadow-sm" type="submit"><i class="fas fa-fw fa-check"></i>
                     Simpan</button>

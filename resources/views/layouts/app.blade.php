@@ -38,16 +38,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.dosen.index') }}"
-                                class="nav-link {{ Route::is('admin.dosen.*') ? 'active' : '' }}">Dosen</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Mahasiswa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Matakuliah</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href="{{ route('admin.dosen.index') }}"
+                                    class="nav-link {{ Route::is('admin.dosen.*') ? 'active' : '' }}">Dosen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.mahasiswa.index') }}"
+                                    class="nav-link {{ Route::is('admin.mahasiswa.*') ? 'active' : '' }}">Mahasiswa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Matakuliah</a>
+                            </li>
+                        @endauth
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
