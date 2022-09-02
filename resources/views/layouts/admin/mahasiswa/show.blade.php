@@ -113,28 +113,32 @@
                         Matakuliah yang Diambil
                     </div>
                     <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Kode Matakuliah</th>
-                                    <th scope="col">Nama Matakuliah</th>
-                                    <th scope="col">Jumlah SKS</th>
-                                    <th scope="col">Dosen Pengampu</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($enrollments as $enrollment)
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>{{ $enrollment->matakuliah->kode_mk }}</td>
-                                        <td>{{ $enrollment->matakuliah->name }}</td>
-                                        <td>{{ $enrollment->matakuliah->sks }}</td>
-                                        <td>{{ $enrollment->matakuliah->dosen->name }}</td>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Kode Matakuliah</th>
+                                        <th scope="col">Nama Matakuliah</th>
+                                        <th scope="col">Jumlah SKS</th>
+                                        <th scope="col">Dosen Pengampu</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($enrollments as $enrollment)
+                                        <tr>
+                                            <th scope="row">
+                                                {{ ($enrollments->currentPage() - 1) * $enrollments->perPage() + $loop->iteration }}
+                                            </th>
+                                            <td>{{ $enrollment->matakuliah->kode_mk }}</td>
+                                            <td>{{ $enrollment->matakuliah->name }}</td>
+                                            <td>{{ $enrollment->matakuliah->sks }}</td>
+                                            <td>{{ $enrollment->matakuliah->dosen->name }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

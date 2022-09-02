@@ -39,17 +39,31 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                            <li class="nav-item">
-                                <a href="{{ route('admin.dosen.index') }}"
-                                    class="nav-link {{ Route::is('admin.dosen.*') ? 'active' : '' }}">Dosen</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.mahasiswa.index') }}"
-                                    class="nav-link {{ Route::is('admin.mahasiswa.*') ? 'active' : '' }}">Mahasiswa</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Matakuliah</a>
-                            </li>
+                            @can('admin', Auth::user())
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.dosen.index') }}"
+                                        class="nav-link {{ Route::is('admin.dosen.*') ? 'active' : '' }}">Dosen</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.mahasiswa.index') }}"
+                                        class="nav-link {{ Route::is('admin.mahasiswa.*') ? 'active' : '' }}">Mahasiswa</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.matakuliah.index') }}"
+                                        class="nav-link {{ Route::is('admin.matakuliah.*') ? 'active' : '' }}">Matakuliah</a>
+                                </li>
+                            @endcan
+                            @can('mahasiswa', Auth::user())
+                                <li class="nav-item">
+                                    <a href="{{ route('mahasiswa.matakuliah.index') }}"
+                                        class="nav-link {{ Route::is('mahasiswa.matakuliah.*') ? 'active' : '' }}">Matakuliah</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('mahasiswa.enrollment.index') }}"
+                                        class="nav-link {{ Route::is('mahasiswa.enrollment.*') ? 'active' : '' }}">Enrollment</a>
+                                </li>
+                            @endcan
+
                         @endauth
 
                     </ul>
