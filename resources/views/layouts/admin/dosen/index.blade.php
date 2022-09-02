@@ -29,8 +29,10 @@
                                 <td>{{ $dosen->jenis_kelamin }}</td>
                                 <td>{{ $dosen->alamat }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-fw fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger"><i class="fas fa-fw fa-trash"></i></button>
+                                    <a href="{{ route('admin.dosen.show', $dosen->id) }}" class="btn btn-sm btn-primary"><i
+                                            class="fas fa-fw fa-eye"></i></a>
+                                    <a href="{{ route('admin.dosen.destroy', $dosen->id) }}"
+                                        class="btn btn-sm btn-danger delete-confirm"><i class="fas fa-fw fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -87,3 +89,21 @@
             </div>
         </div>
     @endsection
+    @push('js')
+        <script>
+            $('.delete-confirm').on('click', function(event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: 'Yakin ingin Menghapus ?',
+                    text: 'Data Dosen ini akan di Hapus Permanen',
+                    icon: 'warning',
+                    buttons: ["Cancel", "Yes!"],
+                }).then(function(value) {
+                    if (value) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        </script>
+    @endpush
