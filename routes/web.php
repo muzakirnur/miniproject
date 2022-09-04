@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'auth.login');
+Route::view('/', 'welcome');
 
 Auth::routes([
     'register' => false
